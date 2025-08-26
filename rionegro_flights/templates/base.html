@@ -1,25 +1,39 @@
 <!DOCTYPE html>
 <html lang="es">
+{% if messages %}
+  {% for m in messages %}
+    <div class="msg">{{ m }}</div>
+  {% endfor %}
+{% endif %}
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{% block title %}Rionegro Flights{% endblock %}</title>
   <style>
     body { font-family: system-ui, Arial, sans-serif; margin: 24px; }
+    header, nav, main { max-width: 900px; margin: 0 auto; }
     nav a { margin-right: 12px; }
-    .btn { padding: 8px 12px; border: 1px solid #333; border-radius: 6px; text-decoration: none; }
+    .btn { display: inline-block; padding: 8px 12px; border: 1px solid #333; border-radius: 6px; text-decoration: none; }
+    .card { border: 1px solid #ddd; padding: 16px; border-radius: 8px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ddd; padding: 8px; } 
+    th { background: #f9f9f9; } 
+    .blue { color: blue; } 
   </style>
 </head>
 <body>
-  <header>
-    <h1>Rionegro Flights</h1>
-    <nav>
-      <a href="{% url 'flights:home' %}">Inicio</a>
-    </nav>
-    <hr />
-  </header>
-  <main>
-    {% block content %}{% endblock %}
-  </main>
+<header>
+  <h1>Rionegro Flights</h1>
+  <nav>
+    <a href="{% url 'flights:home' %}">Inicio</a>
+    <a href="{% url 'flights:create' %}">Registrar vuelos</a>
+    <a href="{% url 'flights:list' %}">Listar vuelos</a>
+    <a href="{% url 'flights:stats' %}">Estadísticas de vuelos</a>
+  </nav>
+  <hr />
+</header>
+<main>
+  {% block content %}{% endblock %}
+</main>
 </body>
 </html>

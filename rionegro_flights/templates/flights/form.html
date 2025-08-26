@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Registrar vuelo{% endblock %}
+{% block content %}
+    <h2>Registrar vuelo</h2>
+    <form method="post" novalidate>
+        {% csrf_token %}
+        <p>
+            <label for="id_name">Nombre:</label><br />
+            {{ form.name }}
+            {% if form.name.errors %}<br /><small style="color:red">{{ form.name.errors|striptags }}</small>{% endif %}
+        </p>
+        <p>
+            <label for="id_type">Tipo:</label><br />
+            {{ form.type }}
+            {% if form.type.errors %}<br /><small style="color:red">{{ form.type.errors|striptags }}</small>{% endif %}
+        </p>
+        <p>
+            <label for="id_price">Precio:</label><br />
+            {{ form.price }}
+            {% if form.price.errors %}<br /><small style="color:red">{{ form.price.errors|striptags }}</small>{% endif %}
+        </p>
+        <button class="btn" type="submit">Guardar</button>
+        <a class="btn" href="{% url 'flights:home' %}">Cancelar</a>
+    </form>
+{% endblock %}
